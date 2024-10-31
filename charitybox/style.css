@@ -1,0 +1,344 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding-top: 60px;
+}
+
+/* Form styling */
+.login-form, .registration-form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+}
+
+.login-form h2, .registration-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-form label, .registration-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Input fields styling */
+.login-form input[type="text"],
+.login-form input[type="email"],
+.login-form input[type="password"],
+.registration-form input[type="text"],
+.registration-form input[type="email"],
+.registration-form input[type="password"],
+.registration-form input[type="tel"],
+.registration-form textarea {
+    width: 350px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Submit button styling */
+.login-form input[type="submit"],
+.registration-form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-form input[type="submit"]:hover,
+.registration-form input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Error/success message styling */
+.message {
+    color: red;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* Container for filter and organization list */
+.container {
+    display: flex; 
+    padding: 20px;
+    max-width: 1200px;  /* Maximum width for the container */
+}
+
+/* Filter section styling */
+.filter-section {
+    width: 25%; 
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-right: 20px; /* Space to the right */
+    margin-top: 200px !important;
+    height: 300px;
+    margin-left: -80px;
+}
+
+.filter-section h2 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.filter-section form {
+    display: flex;
+    flex-direction: column; /* Stack inputs vertically */
+    gap: 10px;
+}
+
+.filter-section select,
+.filter-section input[type="text"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    width: 100%;
+}
+
+.filter-section input[type="text"]{
+    width: auto;
+}
+
+.filter-section input[type="submit"] {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.filter-section input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Organization list */
+.organization-list {
+    flex: 1; /* Take remaining space for organization list (right side) */
+    margin-top: 100px !important;
+}
+
+/* Card container */
+.cards-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow cards to wrap to the next row */
+    gap: 20px; /* Space between cards */
+}
+
+/* Organization card styling */
+.organization-card {
+    background-color: white;
+    padding: 20px;
+    flex: 1 1 calc(25% - 20px); /* 3 cards per row, responsive */
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align items */
+}
+
+/* Image styling */
+.org-image {
+    width: 100%;  /* Full width images */
+    height: auto;  /* Maintain aspect ratio */
+    border-radius: 10px;
+    margin-bottom: 10px; /* Space between image and text */
+}
+
+/* Organization card content */
+.organization-card h3 {
+    margin-top: 0;
+}
+
+.organization-card p {
+    margin: 5px 0;
+}
+
+/* Responsive styling */
+@media only screen and (max-width: 1200px) {
+    .cards-container {
+        justify-content: center; /* Center cards on medium screens */
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .organization-card {
+        flex: 1 1 100%; /* Full width cards on small screens */
+    }
+
+    .filter-section {
+        width: 100%; /* Full width for filter on small screens */
+        margin-right: 0; /* Remove right margin */
+        margin-bottom: 20px; /* Add bottom margin for spacing */
+    }
+}
+
+/* Donate button styling */
+.donate-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #7A7057;  /* Green color */
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.donate-button:hover {
+    background-color: #45a049;  /* Darker green on hover */
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;            /* Full width of the screen */
+    background-color: #fff;  /* Set background color to make it visible */
+    z-index: 1000;           /* High z-index to ensure it stays on top of other elements */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: add a subtle shadow for visibility */
+    height: 50px;
+}
+
+/* Filter button styling */
+.filter-button {
+    position: fixed;
+    top: 60px;
+    left: 20px;
+    padding: 10px 15px;
+    background-color: #7A7057;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    z-index: 1001;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.filter-button i {
+    margin-right: 5px; /* Space between icon and text */
+}
+
+/* Filter Panel Styling */
+.filter-panel {
+    position: fixed;
+    top: 0;
+    left: -500px; /* Hidden by default */
+    width: 20%; /* 25% of the screen width */
+    height: 100%;
+    background-color: #7A7057;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    transition: left 0.3s ease; /* Smooth slide-in effect */
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.filter-panel.open {
+    left: 0; /* Slide in when open */
+}
+
+/* Styling for form inside the Filter Panel */
+.filter-panel form {
+    margin-top: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.filter-panel select,
+.filter-panel input[type="text"],
+.filter-panel input[type="submit"] {
+    padding: 10px;
+    width: 90%;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.filter-panel input[type="submit"] {
+    background-color: #E7CA0A;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.filter-panel input[type="submit"]:hover {
+    background-color: #ffdd04;
+}
+
+/* Close button styling */
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: #000;
+}
+
+.filter-panel h2 {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 20px;
+    color: #333;
+}
+
+/* Main Content Styling for the Organization Cards */
+#contentContainer.open-panel {
+    margin-left: 0; /* Default margin when the filter panel is hidden */
+    width: 100%; /* Full width by default */
+    transition: margin-left 0.3s ease, width 0.3s ease; /* Smooth transition */
+}
+
+#contentContainer{
+    margin-left: 25%; /* Move the content right to fit the filter panel */
+    width: 75%; /* Adjust width when the filter panel is open */
+}
+
+.filter-panel button[type="button"] {
+    background-color: #E7CA0A;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 16px;
+    margin-top: 10px;
+    width: 90%;
+}
+
+.filter-panel button[type="button"]:hover {
+    background-color: #ffdd04;
+}
+
