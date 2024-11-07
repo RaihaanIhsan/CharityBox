@@ -5,50 +5,13 @@
 }
 
 body {
-    font-family: 'DM Sans', sans-serif;
+    font-family: Arial, sans-serif;
     color: #333;
     background-color: #f9fafb;
     text-align: center;
 }
 
-header {
-    background-color: #534C3C;
-    padding: 30px 65px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
 
-.header-content {
-    display: flex;
-    align-items: center;
-    width: 100%;
-   
-}
-
-.logo {
-    width: 150px;
-}
-
-nav {
-    margin-left: auto; /* Pushes the navigation to the right */
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-
-.nav-links a {
-    color: #E9ECEB;
-    text-decoration: none;
-    font-size: 16px;
-}
-
-.nav-links a:hover {
-    color: #ffcc00;
- }
 
 .hero-section {
     background-color: #f3f3f3;
@@ -158,29 +121,4 @@ nav {
 }
 
 
-.footer {
-    background-color: #504434;
-    color: #E9ECEB;
-    padding: 20px;
-    text-align: center;
-}
 
-.footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-
-.footer-logo {
-    width: 180px; /* Adjust based on the logo's actual dimensions */
-    height: 50px;
-}
-
-.footer-contact {
-    font-size: 16px;
-}
-
-.footer-copyright {
-    font-size: 12px;
-}

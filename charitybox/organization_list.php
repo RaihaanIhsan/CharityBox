@@ -92,17 +92,7 @@ function clearFilters() {
     
 </head>
 <body>
-<header class="header">
-<section class="flex">
-<nav class="navbar">
-         <a href="home.php">Home</a>
-         <a href="about.php">About Us</a>
-         <a href="orders.php">Orders</a>
-         <a href="shop.php">Shop Now</a>
-         <a href="contact.php">Contact Us</a>
-</nav>
-</section>
-</header>
+<?php include 'header.php'; ?>
 <button class="filter-button" onclick="toggleFilterPanel()">
     <i class="fas fa-filter"></i> Filter
 </button>
@@ -135,12 +125,12 @@ function clearFilters() {
                     while ($org = mysqli_fetch_assoc($result)) {
                         echo "<div class='organization-card'>";
                         echo "<img src='./images/". $org['image'] . "' alt='" . $org['name'] . " Image' class='org-image'>";
-                        echo "<h3>" . $org['name'] . "</h3>";
+                        // echo "<h3>" . $org['name'] . "</h3>";
                         echo "<p><strong>Donations Accepted:</strong> " . $org['category'] . "</p>";
                         echo "<p><strong>Location:</strong> " . $org['location'] . "</p>";
                         echo "<p>" . $org['mission_statement'] . "</p>";
                         echo "<p><strong>Contact Info:</strong> " . $org['contact_info'] . "</p>";
-                        echo "<a href='donate_page.php?org_id=" . $org['id'] . "' class='donate-button'>Donate Now</a>";
+                        echo "<a href='login.php?org_id=" . $org['id'] . "' class='donate-button'>Donate Now</a>";
                         echo "</div>";
                     }
                 } else {
@@ -150,7 +140,7 @@ function clearFilters() {
             </div>
         </div>
     </div>
-    
+    <?php include 'footer.php'; ?>
 
 </body>
 </html>

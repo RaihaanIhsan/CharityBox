@@ -24,48 +24,7 @@
          color: #fff;
       }
 
-      /* Header styles */
-      header {
-         width: 100%;
-         background-color: #534C3C;
-         padding: 30px 65px;
-         color: #fff;
-         display: flex;
-         justify-content: space-between;
-         align-items: center;
-      }
-
-      /* Logo */
-      .logo {
-         font-size: 24px;
-         font-weight: bold;
-         display: flex;
-         align-items: center;
-      }
-
-      .logo i {
-         margin-right: 10px;
-      }
-
-      /* Navigation styles */
-      nav ul {
-         display: flex;
-         list-style-type: none;
-      }
-
-      nav ul li {
-         margin: 0 15px;
-      }
-
-      nav ul li a {
-         color: #fff;
-         text-decoration: none;
-         font-weight: 500;
-      }
-
-      nav ul li a:hover {
-         color: #ffcc00;
-      }
+      
 
       /* Main section styles */
       .main {
@@ -183,57 +142,11 @@
    font-weight: 500;
 }
 
-
-      /* Footer styles, initially hidden */
-      .footer {
-         background-color: #504434;
-         color: #E9ECEB;
-         padding: 20px;
-         text-align: center;
-         /*display: none;*/ /* Hide footer initially */
-      }
-
-      .footer-content {
-         display: flex;
-         flex-direction: column;
-         align-items: center;
-         gap: 10px;
-      }
-
-      .footer-logo {
-         width: 180px;
-         height: 50px;
-      }
-
-      .footer-contact {
-         font-size: 16px;
-      }
-
-      .footer-copyright {
-         font-size: 12px;
-      }
-
    </style>
 </head>
 <body>
 
-   <!-- Header -->
-   <header>
-      <div class="logo">
-         <img src="logo.png" alt="Logo" width="200" height="40">
-      </div>
-      <nav>
-         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="about_us.html">About Us</a></li>
-            <li><a href="#">Volunteer</a></li>
-            <li><a href="#">Donate</a></li>
-            <li><a href="#"><i class="fas fa-sign-in-alt"></i> Login</a></li>
-            <li><a href="#"><i class="fas fa-user-plus"></i> Sign Up</a></li>
-         </ul>
-      </nav>
-   </header>
-
+<?php include 'header.php'; ?>
    <!-- Main Section -->
    <section class="main">
       <div class="main-content">
@@ -247,36 +160,26 @@
       <h2>Our Partners</h2>
       <div class="partners-gallery">
          <div class="partner">
-            <img src="hands.png" alt="Partner 1">
+            <img src="./images/hands.png" alt="Partner 1">
             <p>Hands</p>
          </div>
          <div class="partner">
-            <img src="org2.png" alt="Partner 2">
+            <img src="./images/org2.png" alt="Partner 2">
             <p>Patient's Welfare Association</p>
          </div>
          <div class="partner">
-            <img src="akhuwat.png" alt="Partner 3">
+            <img src="./images/akhuwat.png" alt="Partner 3">
             <p>Akhuwat Foundation</p>
          </div>
          <div class="partner">
-            <img src="chippa.png" alt="Partner 3">
+            <img src="./images/chippa.png" alt="Partner 3">
             <p>Chhipa Welfare Association</p>
          </div>
         
          <!-- Add more partners as needed -->
       </div>
-   </section>
-
-   <!-- Footer -->
-   <footer class="footer" id="footer">
-      <div class="footer-content">
-         <img src="logo.png" alt="Charity Box Logo" class="footer-logo">
-         <p class="footer-contact">+92 3654800128 | charitybox60@gmail.com</p>
-         <p class="footer-copyright">© 2024 CharityBox. All rights reserved.</p>
-      </div>
-   </footer>
-
+   </section> 
    
-
+   <?php include 'footer.php'; ?>
 </body>
 </html>

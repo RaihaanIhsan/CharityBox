@@ -4,6 +4,15 @@ include 'config.php';  // Database connection
 
 $message = '';  // Initialize the message variable
 
+// Check if the verification parameter is set
+if (isset($_GET['verification']) && $_GET['verification'] == 'success') {
+    $message = "Your email has been verified successfully! You can now log in.";
+}
+
+if (isset($_GET['org_id'])) {
+    $_SESSION['org_id'] = $_GET['org_id'];
+}
+
 if (isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -13,16 +22,21 @@ if (isset($_POST['login'])) {
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
         $user = mysqli_fetch_assoc($result);
-        if (password_verify($password, $user['password'])) {
-            // Start the session and log the user in
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['email'] = $user['email'];
-            $message = "Login successful!";
-            // Redirect the user to the dashboard or home page after a delay
-            header("Location: dashboard.php");
-            exit();
+        
+        // Check if the email is verified
+        if ($user['is_verified'] == 0) {
+            $message = "Please verify your email before logging in.";
         } else {
-            $message = "Invalid password!";
+            if (password_verify($password, $user['password'])) {
+                // Start the session and log the user in
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['email'] = $user['email'];
+                $message = "Login successful!";
+                header("Location: donationform.php");
+                exit();
+            } else {
+                $message = "Invalid password!";
+            }
         }
     } else {
         $message = "No account found with that email!";
@@ -37,7 +51,7 @@ if (isset($_POST['login'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="style.css">
-
+    
     <!-- Inline CSS for the popup and animation -->
     <style>
         /* Pop-up container */
@@ -81,7 +95,8 @@ if (isset($_POST['login'])) {
     </style>
 </head>
 <body>
-
+<?php include 'header.php'; ?>
+<div class="main-container">
     <form class="login-form" action="login.php" method="POST">
         <h2>Login</h2>
         
@@ -90,43 +105,51 @@ if (isset($_POST['login'])) {
         
         <label for="password">Password</label>
         <input type="password" id="password" name="password" required>
-        
-        <input type="submit" name="login" value="Login">
+        <p style="margin-top: -2px;">
+           <a href="forgotpassword.php">Forgot Password?</a>
+        <div class="button-container">
+            <input type="submit" name="login" value="Login">
+        </div>
+        <p style="text-align: center; margin-top: 15px;">
+            Not registered yet? <a href="register.php">Sign Up</a>
+        </p>
     </form>
+</div>
+<?php include 'footer.php'; ?>
 
-    <!-- Pop-up notification -->
-    <div id="popup" class="popup">
-        <span id="popup-message"></span>
-        <button class="close-btn" onclick="hidePopup()">✕</button>
-    </div>
+<!-- Pop-up notification -->
+<div id="popup" class="popup">
+    <span id="popup-message"></span>
+    <button class="close-btn" onclick="hidePopup()">✕</button>
+</div>
 
-    <!-- JavaScript to handle the pop-up display -->
-    <script>
-        // Show the pop-up if there is a PHP message
-        window.onload = function() {
-            var message = "<?php echo $message; ?>";
-            if (message !== "") {
-                var popup = document.getElementById('popup');
-                document.getElementById('popup-message').textContent = message;
-
-                // If the message is an error (invalid login), add error class
-                if (message.includes('Invalid') || message.includes('No account')) {
-                    popup.classList.add('error');
-                }
-
-                popup.classList.add('show');
-
-                // Automatically hide the popup after 5 seconds
-                setTimeout(hidePopup, 5000);
-            }
-        };
-
-        // Function to hide the pop-up
-        function hidePopup() {
+<!-- JavaScript to handle the pop-up display -->
+<script>
+    // Show the pop-up if there is a PHP message
+    window.onload = function() {
+        var message = "<?php echo $message; ?>";
+        if (message !== "") {
             var popup = document.getElementById('popup');
-            popup.classList.remove('show');
+            document.getElementById('popup-message').textContent = message;
+
+            // If the message is an error (invalid login), add error class
+            if (message.includes('Invalid') || message.includes('No account') || message.includes('verify')) {
+                popup.classList.add('error');
+            }
+
+            popup.classList.add('show');
+
+            // Automatically hide the popup after 5 seconds
+            setTimeout(hidePopup, 5000);
         }
-    </script>
+    };
+
+    // Function to hide the pop-up
+    function hidePopup() {
+        var popup = document.getElementById('popup');
+        popup.classList.remove('show');
+    }
+</script>
 
 </body>
 </html>

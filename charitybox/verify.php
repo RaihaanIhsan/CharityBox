@@ -2,46 +2,33 @@
 // Include database connection file
 include 'config.php';
 
-// Initialize the message variable
-$message = '';
-
 if (isset($_GET['token'])) {
-    $verification_token = $_GET['token'];
+    // Get the verification token from the URL
+    $token = $_GET['token'];
 
-    // Check if the token exists in the database
-    $sql = "SELECT * FROM users WHERE verification_token = '$verification_token' AND is_verified = 0";
-    $result = mysqli_query($conn, $sql);
+    // Prepare SQL query to find user by verification token
+    $sql = "SELECT * FROM users WHERE verification_token = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $token);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    if (mysqli_num_rows($result) > 0) {
-        // Token exists, update user status to verified
-        $sql_update = "UPDATE users SET is_verified = 1, verification_token = NULL WHERE verification_token = '$verification_token'";
-        if (mysqli_query($conn, $sql_update)) {
-            $message = "Your email has been verified successfully! You can now log in.";
+    if ($result->num_rows > 0) {
+        // Token is valid; update the user's status to verified
+        $user = $result->fetch_assoc();
+        $update_sql = "UPDATE users SET is_verified = 1, verification_token = NULL WHERE id = ?";
+        $update_stmt = $conn->prepare($update_sql);
+        $update_stmt->bind_param("i", $user['id']);
+        if ($update_stmt->execute()) {
+            echo "Email verified successfully! You can now <a href='login.php'>log in</a>.";
         } else {
-            $message = "Error updating record: " . mysqli_error($conn);
+            echo "Error verifying email: " . $conn->error;
         }
     } else {
-        $message = "This verification link is either invalid or has already been used.";
+        // Token is invalid
+        echo "Invalid verification token.";
     }
 } else {
-    $message = "No verification token provided.";
+    echo "No token provided.";
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Verification</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<div class="verification-message">
-    <h2><?php echo $message; ?></h2>
-    <a href="login.php">Go to Login</a>
-</div>
-
-</body>
-</html>

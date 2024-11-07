@@ -41,20 +41,19 @@ if (isset($_POST['register'])) {
             
             if (mysqli_query($conn, $sql_insert)) {
                 // Send the verification email using PHPMailer
-                // Send the verification email using PHPMailer
 $phpmailer = new PHPMailer(true); // Create a new PHPMailer instance
 try {
     // Server settings
     $phpmailer->isSMTP();
     $phpmailer->Host = 'smtp.gmail.com';
     $phpmailer->SMTPAuth = true;
-    $phpmailer->Username = 'raihaanihsan21001@gmail.com'; // Your Gmail address
-    $phpmailer->Password = 'onmy djxy fzrj fyyr'; // Your App Password
+    $phpmailer->Username = 'charitybox60@gmail.com'; // Your Gmail address
+    $phpmailer->Password = 'oxqs knuv dpow pumc'; // Your App Password
     $phpmailer->SMTPSecure = 'tls';
     $phpmailer->Port = 587;
 
     // Recipients
-    $phpmailer->setFrom('raihaanihsan21001@gmail.com', 'CharityBox'); // Your sender email
+    $phpmailer->setFrom('charitybox60@gmail.com', 'CharityBox'); // Your sender email
     $phpmailer->addAddress($email, $full_name); // Add the recipient
 
     // Content
@@ -125,7 +124,8 @@ try {
     </style>
 </head>
 <body>
-
+<?php include 'header.php'; ?>
+<div class="main-container">
     <form class="registration-form" action="register.php" method="POST">
         <h2>Sign Up</h2>
         
@@ -136,17 +136,20 @@ try {
         <input type="email" id="email" name="email" required>
         
         <label for="password">Password</label>
-        <input type="password" id="password" name="password" required>
-        
+        <input type="password" id="password" name="password" minlength="5" required>
+
         <label for="contact_number">Contact Number</label>
-        <input type="tel" id="contact_number" name="contact_number">
-        
+        <input type="tel" id="contact_number" name="contact_number" pattern="^\d{11}$" required>
+
         <label for="address">Address (Optional)</label>
         <textarea id="address" name="address" rows="3"></textarea>
         
-        <input type="submit" name="register" value="Register">
+        <div class="button-container">
+        <input type="submit" name="register" value="Sign Up">
+        </div>
     </form>
-
+</div>  
+    <?php include 'footer.php'; ?>
     <!-- Pop-up notification -->
     <div id="popup" class="popup">
         <span id="popup-message"></span>
