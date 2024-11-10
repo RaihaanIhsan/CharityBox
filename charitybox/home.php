@@ -24,13 +24,11 @@
          color: #fff;
       }
 
-      
-
       /* Main section styles */
       .main {
          flex: 1;
          width: 100%;
-         background-image: url('homebackdrop.jpg'); /* Replace with actual image URL */
+         background-image: url('./images/homebackdrop.jpg');
          background-size: cover;
          background-position: center;
          color: #fff;
@@ -178,7 +176,7 @@
         
          <!-- Add more partners as needed -->
       </div>
-   </section> 
+   </section>
    
    <?php include 'footer.php'; ?>
 </body>

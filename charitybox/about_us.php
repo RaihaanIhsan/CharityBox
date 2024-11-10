@@ -10,7 +10,6 @@
 </head>
 <body>
    <?php include 'header.php'; ?>
-    
 
     <main>
         <section class="about-section">
@@ -27,14 +26,14 @@
                         <p>We work with local shelters, non-profits, and charities, helping them receive resources to make an immediate impact.</p>
                     </div>
                 </div>
-                <img src="charity box 3.jpg" alt="Our Mission Image">
+                <img src="./images/charity box 3.jpg" alt="Our Mission">
             </div>
-        </section>        
+        </section>
 
         <section class="who-we-are-section">
             <h2>Who We Are</h2>
             <div class="section-content">
-                <img src="charity box 1.jpg" alt="Who We Are Image">
+                <img src="./images/charity box 1.jpg" alt="Who We Are">
                 <div class="section-content">
                     <div class="text-content">
                         <div class="section-item">
@@ -78,7 +77,7 @@
                         </div>
                     </div>
                 </div>
-                <img src="charity box 4.jpg" alt="Who We Are Image">
+                <img src="./images/charity box 4.jpg" alt="Who We Are">
             </div>
         </section>
 
@@ -86,22 +85,22 @@
             <h2>Why Choose CharityBox?</h2>
 
             <div class="section-content">
-                <img src="charity box 5.jpg" alt="Who We Are Image">
+                <img src="./images/charity box 4.jpg" alt="Who We Are">
                 <div class="section-content">
                      <div class="text-content">
                          <div class="section-item">
                              Our platform is designed to make charitable giving and volunteering accessible and fulfilling
                          </div>
                          <div class="section-item">
-                             <strong>User-Friendly</strong> 
+                             <strong>User-Friendly</strong>
                          <p>Built for ease of use, connecting donors and charities effortlessly.</p>
                          </div>
                          <div class="section-item">
-                             <strong>Secure Platform:</strong> 
+                             <strong>Secure Platform:</strong>
                              <p>We prioritize your privacy with secure registration and data protection measures.</p>
                          </div>
                          <div class="section-item">
-                             <strong>Community-Focused:</strong> 
+                             <strong>Community-Focused:</strong>
                              <p>Dedicated to strengthening communities through impactful, direct giving.</p>
                          </div>
                      </div>
