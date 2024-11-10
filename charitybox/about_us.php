@@ -18,11 +18,11 @@
             <div class="section-content">
                 <div class="text-content">
                     <div class="section-item">
-                        <strong>Connecting People with Purpose</strong> 
+                        <strong>Connecting People with Purpose</strong>
                         <p>At CharityBox, our mission is to create a bridge between those who want to give and those in need. We make it simple and meaningful to donate items, time, and skills to support communities.</p>
                     </div>
                     <div class="section-item">
-                        <strong>Empowering Local Charities</strong> 
+                        <strong>Empowering Local Charities</strong>
                         <p>We work with local shelters, non-profits, and charities, helping them receive resources to make an immediate impact.</p>
                     </div>
                 </div>
@@ -37,15 +37,15 @@
                 <div class="section-content">
                     <div class="text-content">
                         <div class="section-item">
-                            <strong>Simplifying Giving</strong> 
+                            <strong>Simplifying Giving</strong>
                             <p>With an intuitive interface, we allow donors to find and support nearby charities with just a few clicks.</p>
                         </div>
                         <div class="section-item">
-                            <strong>Making Volunteering Easy</strong> 
+                            <strong>Making Volunteering Easy</strong>
                             <p>We match volunteers with local charities that need help, enabling anyone to contribute their skills and time effectively.</p>
                         </div>
                         <div class="section-item">
-                            <strong>Enhancing Transparency</strong> 
+                            <strong>Enhancing Transparency</strong>
                             <p>Donors can track their contributions, ensuring every gift reaches those in need.</p>
                         </div>
                     </div>
@@ -64,15 +64,15 @@
                             Our platform is designed to make charitable giving and volunteering accessible and fulfilling
                         </div>
                         <div class="section-item">
-                            <strong>Donation Matching</strong> 
+                            <strong>Donation Matching</strong>
                             <p> for charities by category and location to ensure your donation reaches the right hands.</p>
                         </div>
                         <div class="section-item">
-                            <strong>Real-Time Notifications</strong> 
+                            <strong>Real-Time Notifications</strong>
                             <p>Charities receive alerts for new donations, while donors stay updated on contributions.</p>
                         </div>
                         <div class="section-item">
-                            <strong>Volunteer Opportunities</strong> 
+                            <strong>Volunteer Opportunities</strong>
                             <p>Sign up for volunteer work based on skills, interests, and availability.</p>
                         </div>
                     </div>
