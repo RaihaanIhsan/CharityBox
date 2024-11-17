@@ -6,7 +6,7 @@
     <title>About Us - CharityBox</title>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="styles2.css">
+    <link rel="stylesheet" href="./styles.css/styles2.css">
 </head>
 <body>
    <?php include 'header.php'; ?>

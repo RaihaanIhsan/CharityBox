@@ -1,6 +1,10 @@
 <?php
 // Include database connection file
-include 'config.php';
+require_once 'DatabaseConnection.php'; // Include the DatabaseConnection class
+
+// Initialize the database connection
+$db = new DatabaseConnection();
+$conn = $db->getConnection();
 
 if (isset($_GET['token'])) {
     // Get the verification token from the URL

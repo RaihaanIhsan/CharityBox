@@ -1,6 +1,10 @@
 <?php
 session_start();
-include 'config.php';  // Database connection
+require_once 'DatabaseConnection.php'; // Include the DatabaseConnection class
+
+// Initialize the database connection
+$db = new DatabaseConnection();
+$conn = $db->getConnection();
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 

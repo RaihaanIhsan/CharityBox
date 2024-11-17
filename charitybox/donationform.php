@@ -1,62 +1,7 @@
 <?php
-session_start();
-include 'config.php';
-
-// Check if user is logged in and org_id is set
-if (!isset($_SESSION['user_id']) || !isset($_SESSION['org_id'])) {
-    // Redirect to login if either user_id or org_id is missing
-    header("Location: login.php");
-    exit();
-}
-
-$user_id = $_SESSION['user_id'];
-$org_id = $_SESSION['org_id'];
-
-// Retrieve organization name
-$sql = "SELECT name FROM organizations WHERE id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $org_id);
-$stmt->execute();
-$stmt->bind_result($org_name);
-$stmt->fetch();
-$stmt->close();
-
-// Handle form submission within this page
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $description = $_POST['description'];
-    $title = $_POST['title'];
-    $category = $_POST['category'];
-    $condition = $_POST['condition'];
-    $quantity = $_POST['quantity'];
-    $location = $_POST['location'];
-    $contact = $_POST['contact'];
-    $image_paths = [];
-
-    // Handle file upload
-    if (isset($_FILES['images']) && count($_FILES['images']['name']) > 0) {
-        foreach ($_FILES['images']['name'] as $key => $image_name) {
-            $temp_name = $_FILES['images']['tmp_name'][$key];
-            $image_path = "uploads/" . basename($image_name);
-            if (move_uploaded_file($temp_name, $image_path)) {
-                $image_paths[] = $image_path;
-            }
-        }
-    }
-    $image_path_string = implode(',', $image_paths);
-
-    // Insert record
-    $sql = "INSERT INTO donations (user_id, org_id, item_description, image_path) VALUES (?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("iiss", $user_id, $org_id, $description, $image_path_string);
-
-    if ($stmt->execute()) {
-        $_SESSION['message'] = 'Donation form submitted successfully!';
-    } else {
-        $_SESSION['message'] = 'Error: ' . $stmt->error;
-    }
-    $stmt->close();
-}
+require_once 'DonationController.php'; // Includes all necessary backend logic
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

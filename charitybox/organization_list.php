@@ -1,5 +1,9 @@
 <?php
-include 'config.php';  // Include the database connection file
+require_once 'DatabaseConnection.php'; // Include the DatabaseConnection class
+
+// Initialize the database connection
+$db = new DatabaseConnection();
+$conn = $db->getConnection();
 
 // Initialize variables for filters
 $filter_location = '';
@@ -52,24 +56,23 @@ $result = mysqli_query($conn, $sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CharityBox - Organization List</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./styles.css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script>
-function toggleFilterPanel() {
-    const filterPanel = document.getElementById("filterPanel");
-    const contentContainer = document.getElementById("contentContainer");
-    filterPanel.classList.toggle("open");
-    contentContainer.classList.toggle("open-panel");
-}
-function clearFilters() {
-    document.querySelector('select[name="category"]').selectedIndex = 0; // Reset category to 'All Categories'
-    document.getElementById("location").value = ""; // Clear location input
-    document.forms[0].submit(); // Submit the form to reload with default list
-}
-</script>
-
-
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+        function toggleFilterPanel() {
+            const filterPanel = document.getElementById("filterPanel");
+            const contentContainer = document.getElementById("contentContainer");
+            filterPanel.classList.toggle("open");
+            contentContainer.classList.toggle("open-panel");
+        }
+        function clearFilters() {
+            document.querySelector('select[name="category"]').selectedIndex = 0; // Reset category to 'All Categories'
+            document.getElementById("location").value = ""; // Clear location input
+            document.forms[0].submit(); // Submit the form to reload with default list
+        }
+    </script>
+    
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
     <script>
         $(function() {
@@ -86,11 +89,10 @@ function clearFilters() {
                 source: locations
             });
         });
-    </script> 
-
-
-    
+    </script>
+   
 </head>
+
 <body>
 <?php include 'header.php'; ?>
 <button class="filter-button" onclick="toggleFilterPanel()">
@@ -107,10 +109,8 @@ function clearFilters() {
             <option value="Clothes" <?php if (isset($filter_category) && $filter_category == 'Clothes') echo 'selected'; ?>>Clothes</option>
             <option value="Toys" <?php if (isset($filter_category) && $filter_category == 'Toys') echo 'selected'; ?>>Toys</option>
         </select>
-
         <!-- Location input with auto-complete -->
         <input type="text" id="location" name="location" placeholder="Type or choose a location" value="<?php echo isset($filter_location) ? $filter_location : ''; ?>">
-
         <input type="submit" name="filter" value="Filter">
         <button type="button" onclick="clearFilters()">Clear Filter</button>
     </form>

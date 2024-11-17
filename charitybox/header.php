@@ -40,7 +40,7 @@ nav {
 
 <header>
         <div class="header-content">
-            <img src="logo.png" alt="CharityBox Logo" class="logo">
+            <img src="./images/logo.png" alt="CharityBox Logo" class="logo">
             <nav>
                 <ul class="nav-links">
                     <li><a href="home.php">Home</a></li>

@@ -1,6 +1,10 @@
 <?php
 session_start(); // Start session for message handling
-include 'config.php'; // Database connection
+require_once 'DatabaseConnection.php'; // Include the DatabaseConnection class
+
+// Initialize the database connection
+$db = new DatabaseConnection();
+$conn = $db->getConnection();
 $token = $_GET['token'] ?? '';
 $message = ''; // Initialize message variable
 
@@ -42,7 +46,7 @@ if (!empty($message)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reset Password</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./styles.css/style.css">
 
     <style>
         /* Include the pop-up styling here */

@@ -32,7 +32,7 @@
  <!-- Footer -->
  <footer class="footer" id="footer">
       <div class="footer-content">
-         <img src="logo.png" alt="Charity Box Logo" class="footer-logo">
+         <img src="./images/logo.png" alt="Charity Box Logo" class="footer-logo">
          <p class="footer-contact">+92 3654800128 | charitybox60@gmail.com</p>
          <p class="footer-copyright">© 2024 CharityBox. All rights reserved.</p>
       </div>

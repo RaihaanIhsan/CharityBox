@@ -16,7 +16,7 @@ if (isset($_SESSION['message'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forgot Password</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./styles.css/style.css">
     
     <style>
         /* Include the pop-up styling here */

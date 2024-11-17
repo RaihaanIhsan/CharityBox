@@ -1,17 +1,15 @@
 <?php
-// Include database connection file
-include 'config.php';
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+require_once 'DatabaseConnection.php';
+require_once 'UserRepository.php';
+require_once 'MailService.php';
 
-// Load Composer's autoloader
-require_once '../vendor/autoload.php';
+$db = new DatabaseConnection(); // Initialize database connection
+$conn = $db->getConnection();   // Get connection object
+$userRepo = new UserRepository($conn); // User repository for DB operations
 
-// Initialize the message variable
 $message = '';
 
 if (isset($_POST['register'])) {
-    // Capture form data
     $full_name = $_POST['full_name'];
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -21,60 +19,34 @@ if (isset($_POST['register'])) {
     // Basic validation
     if (empty($full_name) || empty($email) || empty($password)) {
         $message = "Please fill in all required fields.";
+    } elseif ($userRepo->isEmailRegistered($email)) {
+        $message = "This email is already registered. Please use a different email.";
     } else {
-        // Check if email already exists
-        $sql_check_email = "SELECT * FROM users WHERE email = '$email'";
-        $result = mysqli_query($conn, $sql_check_email);
-        
-        if (mysqli_num_rows($result) > 0) {
-            $message = "This email is already registered. Please use a different email.";
-        } else {
-            // Hash the password
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-            
-            // Generate a unique verification token
-            $verification_token = bin2hex(random_bytes(16));
-            
-            // Insert user into the database with verification token and unverified status
-            $sql_insert = "INSERT INTO users (full_name, email, password, contact_number, address, verification_token, is_verified) 
-                            VALUES ('$full_name', '$email', '$hashed_password', '$contact_number', '$address', '$verification_token', 0)";
-            
-            if (mysqli_query($conn, $sql_insert)) {
-                // Send the verification email using PHPMailer
-$phpmailer = new PHPMailer(true); // Create a new PHPMailer instance
-try {
-    // Server settings
-    $phpmailer->isSMTP();
-    $phpmailer->Host = 'smtp.gmail.com';
-    $phpmailer->SMTPAuth = true;
-    $phpmailer->Username = 'charitybox60@gmail.com'; // Your Gmail address
-    $phpmailer->Password = 'oxqs knuv dpow pumc'; // Your App Password
-    $phpmailer->SMTPSecure = 'tls';
-    $phpmailer->Port = 587;
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $verification_token = bin2hex(random_bytes(16));
+        $user = [
+            'full_name' => $full_name,
+            'email' => $email,
+            'password' => $hashed_password,
+            'contact_number' => $contact_number,
+            'address' => $address,
+            'verification_token' => $verification_token
+        ];
 
-    // Recipients
-    $phpmailer->setFrom('charitybox60@gmail.com', 'CharityBox'); // Your sender email
-    $phpmailer->addAddress($email, $full_name); // Add the recipient
-
-    // Content
-    $phpmailer->isHTML(true); // Set email format to HTML
-    $phpmailer->Subject = 'Verify Your Email Address';
-    $verification_link = "http://localhost:3000/charitybox/verify.php?token=$verification_token"; // Adjust for local testing
-    $phpmailer->Body = "Hi $full_name,<br><br>Please verify your email address by clicking on the link below:<br><a href='$verification_link'>$verification_link</a><br><br>Thank you!";
-
-    // Send the email
-    $phpmailer->send();
-    $message = "Registration successful. Please check your email to verify your account.";
-} catch (Exception $e) {
-    $message = "Message could not be sent. Mailer Error: {$phpmailer->ErrorInfo}";
-}
+        if ($userRepo->createUser($user)) {
+            $verification_link = "http://localhost:3000/charitybox/verify.php?token=$verification_token";
+            if (MailService::sendVerificationEmail($email, $full_name, $verification_link)) {
+                $message = "Registration successful. Please check your email to verify your account.";
             } else {
-                $message = "Error: " . mysqli_error($conn);
+                $message = "Error sending verification email.";
             }
+        } else {
+            $message = "Error registering user.";
         }
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -83,7 +55,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CharityBox - Register</title>
     <!-- Link to external CSS file -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./styles.css/style.css">
 
     <!-- Inline CSS for the popup and animation -->
     <style>

@@ -150,7 +150,7 @@
       <div class="main-content">
          <h1>Happiness comes from your action.</h1>
          <p>Be a part of the breakthrough and make someone's dream come true.</p>
-         <a href="#" class="donate-btn">Donate now</a>
+         <a href="organization_list.php" class="donate-btn">Donate now</a>
       </div>
    </section>
 
